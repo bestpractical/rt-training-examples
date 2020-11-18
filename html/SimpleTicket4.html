@@ -1,0 +1,12 @@
+<& /Elements/Header, 
+    Title => 'Simple Ticket View', &>
+<& /Elements/Tabs &>
+
+<p/>
+<p>This is a page that will show a simple ticket view.</p>
+<p class='rt-training-examples'>This page was generated for <% $name %> with email address <% $email %>
+
+<%init>
+my $name = $session{CurrentUser}->Name;
+my $email = $session{CurrentUser}->EmailAddress;
+</%init>

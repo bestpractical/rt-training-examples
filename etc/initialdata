@@ -1,0 +1,27 @@
+# Add new conditions, actions, scrips to RT
+
+@ScripConditions = (
+    {
+        Name                 => 'Actor is Big Boss',
+        Description          => 'When the transaction creator is the big boss',
+        ApplicableTransTypes => 'Any',
+        ExecModule           => 'ActorIsBigBoss',
+    },
+);
+
+@ScripActions = (
+    {
+        Name        => 'Set Requestor Type VIP',
+        Description => 'Set Requestor Type CF to VIP',
+        ExecModule => 'SetRequestorTypeVIP',
+    },
+);
+
+@Scrips = (
+    {
+        Description    => 'If Actor is Big Boss Set Requestor Type to VIP (from initialdata)',
+        ScripCondition => 'Actor is Big Boss',
+        ScripAction    => 'Set Requestor Type VIP',
+        Template       => 'Blank'
+    },
+);

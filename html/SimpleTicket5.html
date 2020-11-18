@@ -1,0 +1,46 @@
+<& /Elements/Header, 
+    Title => 'Simple Ticket View', &>
+<& /Elements/Tabs &>
+
+<p/>
+<p>This is a page that will show a simple ticket view.</p>
+<p class='rt-training-examples'>This page was generated for <% $name %> with email address <% $email %>
+
+<&| /Widgets/TitleBox, title => loc('Simple Ticket Data'), class => 'fullwidth' &>
+<div class="status form-row">
+  <div class="label col-3"><&|/l&>Id</&>:</div>
+  <div class="value col-9"><span class="current-value"><% loc($ticket->Id) %></span></div>
+</div>
+<div class="status form-row">
+  <div class="label col-3"><&|/l&>Subject</&>:</div>
+  <div class="value col-9"><span class="current-value"><% loc($ticket->Subject) %></span></div>
+</div>
+<div class="status form-row">
+  <div class="label col-3"><&|/l&>Status</&>:</div>
+  <div class="value col-9"><span class="current-value"><% loc($ticket->Status) %></span></div>
+</div>
+</&>
+
+<%init>
+unless ( $id ) {
+    Abort('No ticket specified');
+}
+
+my $name = $session{CurrentUser}->Name;
+my $email = $session{CurrentUser}->EmailAddress;
+
+my $ticket = RT::Ticket->new($session{'CurrentUser'});
+my ($ok, $msg) = $ticket->Load($id);
+
+unless ( $ok ) {
+    RT->Logger->error("Unable to load ticket id $id, $msg");
+    Abort("Unable to load ticket id $id");
+}
+
+# Should now have a ticket id
+RT->Logger->debug("Got ticket with subject " . $ticket->Subject);
+
+</%init>
+<%args>
+$id => undef
+</%args>

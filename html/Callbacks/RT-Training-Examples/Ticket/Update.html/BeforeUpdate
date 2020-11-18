@@ -1,0 +1,21 @@
+<%init>
+return;
+
+# Only run if the submit button was clicked
+return unless $ARGSRef->{'SubmitTicket'};
+
+use Data::Printer;
+warn "Got " . p($ARGSRef);
+
+if ( not $ARGSRef->{'UpdateTimeWorked'} ) {
+    # Encourage users to fill out time worked
+    $$skip_update = 1;  # Stay on the page
+    push @$results, "Please record time if you worked on this ticket";
+}
+</%init>
+<%args>
+$ARGSRef
+$skip_update
+$results
+$TicketObj
+</%args>

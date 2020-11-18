@@ -1,0 +1,17 @@
+<%init>
+
+Menu->child( 'preferences' )->child(
+    'bps_home' => title => 'Home Page',
+    description      => 'Home Page',
+    path  => 'https://bestpractical.com',
+    sort_order       => 1.5,
+);
+
+Menu->child( 'preferences' )->child(
+    'forum_link' => title => 'Public Forum',
+    description      => 'Public Forum',
+    path  => 'https://forum.bestpractical.com',
+    sort_order       => 1.6,
+);
+
+</%init>

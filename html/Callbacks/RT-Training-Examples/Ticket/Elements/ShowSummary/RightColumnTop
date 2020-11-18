@@ -1,0 +1,18 @@
+% # This should show up at the top of the right column
+% #<p>Foo</p>
+
+<%perl>
+
+=pod
+
+<&| /Widgets/TitleBox, title => loc('Custom Portlet'),
+    class => 'ticket-info-basics',
+&>
+    <div class="form-row">
+    <p>Foo</p>
+    </div>
+</&>
+
+=cut
+
+</%perl>

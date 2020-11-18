@@ -1,9 +1,5 @@
 % # This should show up at the top of the right column
-% #<p>Foo</p>
-
-<%perl>
-
-=pod
+<p>Foo</p>
 
 <&| /Widgets/TitleBox, title => loc('Custom Portlet'),
     class => 'ticket-info-basics',
@@ -13,6 +9,3 @@
     </div>
 </&>
 
-=cut
-
-</%perl>

@@ -8,8 +8,11 @@ sub Subject {
 
     my $subject = $self->_Value( 'Subject' );
 
+    ## Custom code
     # Custom code to truncate subject length to 40 characters
-#    $subject = substr($subject, 0, 40);
+    $subject = substr($subject, 0, 40);
+
+    # End code
 
     return $subject if defined $subject;
 

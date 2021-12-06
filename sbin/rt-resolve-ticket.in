@@ -1,0 +1,26 @@
+#!/usr/bin/env perl
+### before: #!@PERL@
+use strict;
+use warnings;
+
+# fix lib paths, some may be relative
+
+### after: use lib qw(@RT_LIB_PATH@);
+use lib '/opt/rt5/local/lib /opt/rt5/lib';
+
+use RT -init;
+use RT::Interface::CLI qw(GetCurrentUser loc);
+
+# Find the identity of the user running the script (gecos)
+my $CurrentUser = GetCurrentUser();
+die loc("No RT user found") unless $CurrentUser->Id;
+
+# Load the ticket based on the id on the command line
+my $id = shift(@ARGV);
+my $ticket = RT::Ticket->new( $CurrentUser );
+$ticket->Load( $id );
+die loc("Ticket [_1] not found", $id) unless $ticket->Id;
+
+# Set the ticket as resolved
+my ($trans, $msg) = $ticket->SetStatus("resolved");
+print $msg;
